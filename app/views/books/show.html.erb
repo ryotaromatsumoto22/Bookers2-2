@@ -4,47 +4,55 @@
 			<%= flash[:notice] %>
 		<% end %>
 	</div>
-	<div class="row">
-		<div class="col-xs-3">
-			<h2>User info</h2>
-			<%= attachment_image_tag @user, :profile_image_id %>
-				<table class="table" >
-					<tbody>
-						<tr></tr>
-						<tr>
-							<th>name</th>
-							<th><%= @user.name %></th>
-						</tr>
-						<tr>
-							<th>introduction</th>
-							<th><%= @user.introduction %></th>
-						</tr>
-					</tbody>
-				</table>
-				<div class="row">
-					<%= link_to "edit", edit_user_path(@user.id) %>
-				</div>
-				<h2>New book</h2>
-				<%= form_for(@book,url:book_path(@book.id)) do |f| %>
-					<label for="book-title">Title</label>
-					<%= f.text_field :title %>
-					<label for="book-opinion">Opinion</label>
-					<%= f.text_field :body %>
-					<%= f.submit 'Create Book' %>
-				<% end %>
+		
+		<div class="row">
 
-			</table>
-		</div>
+		<%= render '/co', book: @book, user: @user %>
+
 
 		<div class="col-xs-9">
 			<h2>Book detail</h2>
 			<table class="table">
 				<tbody>
-					<tr>
-						<td>icon<br>name</td>
-						<td><%= @book_d.title %></td>
-						<td><%= @book_d.body %></td>
-					</tr>
+					<%if user_signed_in? %>
+						<tr>
+							<td>
+								<%= link_to user_path(@book_d.user.id) do %>
+									<%= attachment_image_tag @book_d.user, :profile_image, :fill, 70, 70, format: 'jpeg' %>
+									<br><%= @book_d.user.name %>
+								<% end %>
+							</td>
+							<td>
+								<%= link_to @book_d.title, book_path(@book_d.id) %>
+							</td>
+							<td>
+								<%= @book_d.body %>
+							</td>
+							<td>
+								<div class="btn-sm btn-success">
+									<%= link_to "Edit", edit_book_path(@book_d.id) %>
+							</td>
+							<td>
+								<div class="btn-sm btn-danger">
+									<%= link_to "Destroy",book_path,method: :delete,"data-confirm" =>"本当に消しますか？" %>
+							</td>
+						</tr>
+					<% else %>
+						<tr>
+							<td>
+								<%= link_to user_path(@book_d.user.id) do %>
+									<%= attachment_image_tag @book_d.user, :profile_image, :fill, 70, 70, format: 'jpeg' %>
+									<br><%= @book_d.user.name %>
+								<% end %>
+							</td>
+							<td>
+								<%= link_to @book_d.title, book_path(@book_d.id) %>
+							</td>
+							<td>
+								<%= @book_d.body %>
+							</td>
+						</tr>
+					<% end %>
 				</tbody>
 			</table>
 		</div>

@@ -1,23 +1,23 @@
 <div class="body">
 	<div class="container">
 		<h2>User info</h2>
+			<!--% if @usr.errors.any? %-->
+				<!--%= @user.errors.count %-->
+				<!--% @user.errors.full_messages.each do |message| %-->
+					<!--%= message %-->
+			<!--% end %-->
 		<%= form_for(@user) do |f| %>
-			<% if @usr.errors.any? %>
-			<%= @user.errors.count %>件のエラーが発生しました
-			<% @user.errors.full_messages.each do |message| %>
-				<%= message %>
-			<% end %>
 			<div class="field">
 				<label for="user_name">Name</label>
 					<%= f.text_field :name %>
 			</div>
 			<div class="field">
 				<label for="user_image">Image</label>
-					<!-- 画像 -->
+					<%= f.attachment_field :profile_image %>
 			</div>
 			<div class="field">
 				<label for="user_introduction">Introduction</label>
-					<%= f.text_field :Introduction %>
+					<%= f.text_field :introduction %>
 			</div>
 			<div class="action">
 				<%= f.submit 'Update User' %>
