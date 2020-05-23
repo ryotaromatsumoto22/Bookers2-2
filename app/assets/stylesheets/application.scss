@@ -15,3 +15,55 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333333;
+    background-color: #fff;
+}
+
+.navbar-inverse {
+    background-color: #222;
+    border-color: #090909;
+}
+
+.navbar-fixed-top {
+    top: 0;
+    border-width: 0 0 1px;
+}
+
+header .navbar-left span {
+    font-size: 20px;
+    padding-top: 10px;
+}
+
+.body {
+    margin-top: 51px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

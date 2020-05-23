@@ -12,70 +12,87 @@
   <body>
     <header class="navbar navbar-fixed-top navbar-inverse">
       <div class="container">
-        <div class="row">
-          <div class="col-sm-3">
-            <nav class="nav navbar-nav navbar-left">
-              <span>Bookers</span>
-            </nav>
-          </div>
-        </div>
-          <nav>
-            <% if user_signed_in? %>
-              <div class="row">
-                <ul class="nav navbar-nav navbar-right">
+        <nav class="nav navbar-nav navbar-left">
+          <span>Bookers</span>
+        </nav>
+        <nav>
+          <% if user_signed_in? %>
+            <div class="row">
+              <ul class="nav navbar-nav navbar-right">
                 <div class="col-sm-2">
                   <li>
-                    <a class="glyphicon glyphicon-home home" href="/users/:id"> Home</a>
+                    <div class="glyphicon glyphicon-home home">
+                      <%= link_to "Home", user_path(current_user.id) %>
+                    </div>
                   </li>
                 </div>
                 <div class="col-sm-2">
                   <li>
-                    <a class="glyphicon glyphicon-user users" href="/users"> Users</a>
+                    <div class="glyphicon glyphicon-user users">
+                      <%= link_to "Users", users_path %>
+                    </div>
                   </li>
                 </div>
                 <div class="col-sm-2">
                   <li>
-                    <a class="glyphicon glyphicon-book books" href="/books"> Books</a>
+                    <div class="glyphicon glyphicon-book books">
+                      <%= link_to "Books", books_path %>
+                    </div>
                   </li>
                 </div>
                 <div class="col-sm-2">
                   <li>
-                    <a class="glyphicon glyphicon-edit sign_up" rel="nofollow" data-method="delete" href="/users/sign_out"> logout</a>
+                    <div class="glyphicon glyphicon-edit sign_up">
+                      <%= link_to "logout", destroy_user_session_path,　method: :delete %>
+                    </div>
                   </li>
                 </div>
-              </ul>
-                
+              </li>
+            </ul>
 
             <% else %>
 
-                <ul class="nav navbar navbar-right">
+              <ul class="nav navbar navbar-right">
+                <li>
                   <div class="col-sm-2">
-                    <li>
-                      <a class="glyphicon glyphicon-home home" href="/"> Home</a>
-                    </li>
+                    <div class="glyphicon glyphicon-home home">
+                      <%= link_to "Home", root_path %>
+                    </div>
                   </div>
+                </li>
+                <li>
                   <div class="col-sm-2">
-                    <li>
-                      <a class="glyphicon glyphicon-link about" href="/home/about"> About</a>
-                    </li>
+                    <div class="glyphicon glyphicon-link about">
+                      <%= link_to "About", about_path %>
+                    </div>
                   </div>
+                </li>
+                <li>
                   <div class="col-sm-2">
-                    <li>
-                      <a class="glyphicon glyphicon-edit sign_up" href="/users/sign_up"> sign up</a>
-                    </li>
+                    <div class="glyphicon glyphicon-edit sign_up">
+                      <%= link_to "sign up", new_user_registration_path %>
+                    </div>
                   </div>
+                </li>
+                <li>
                   <div class="col-sm-2">
-                    <li>
-                      <a class="glyphicon glyphicon-log-in sign_in" href="/users/sign_in"> login</a>
-                    </li>
+                    <div class="glyphicon glyphicon-log-in sign_in">
+                      <%= link_to "login", user_session_path %>
+                    </div>
                   </div>
-                </ul>
-              </div>
+                </li>
+              </ul>
             <% end %>
-          </nav>
-        </div>
+          </div>
+        </nav>
       </div>
     </header>
+
+  <div class="container">
+    <%= flash[:notice] %>
+  </div>
+
+    <%= yield %>
 
     <footer>
         <div class="container">
@@ -86,8 +103,6 @@
           </div>
         </div>
     </footer>
-
-    <%= yield %>
   </body>
 </html>
 
