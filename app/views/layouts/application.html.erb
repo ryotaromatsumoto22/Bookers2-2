@@ -47,41 +47,42 @@
                     </div>
                   </li>
                 </div>
-              </li>
-            </ul>
+              </ul>
+            </div>
 
             <% else %>
-
-              <ul class="nav navbar navbar-right">
-                <li>
+              <div class="row">
+                <ul class="nav navbar navbar-right">
                   <div class="col-sm-2">
-                    <div class="glyphicon glyphicon-home home">
-                      <%= link_to "Home", root_path %>
-                    </div>
+                    <li>
+                      <div class="glyphicon glyphicon-home home">
+                        <%= link_to "Home", root_path %>
+                      </div>
+                    </li>
                   </div>
-                </li>
-                <li>
                   <div class="col-sm-2">
-                    <div class="glyphicon glyphicon-link about">
-                      <%= link_to "About", about_path %>
-                    </div>
+                    <li>
+                      <div class="glyphicon glyphicon-link about">
+                        <%= link_to "About", about_path %>
+                      </div>
+                    </li>
                   </div>
-                </li>
-                <li>
                   <div class="col-sm-2">
-                    <div class="glyphicon glyphicon-edit sign_up">
-                      <%= link_to "sign up", new_user_registration_path %>
-                    </div>
+                    <li>
+                      <div class="glyphicon glyphicon-edit sign_up">
+                        <%= link_to "sign up", new_user_registration_path %>
+                      </div>
+                    </li>
                   </div>
-                </li>
-                <li>
                   <div class="col-sm-2">
-                    <div class="glyphicon glyphicon-log-in sign_in">
-                      <%= link_to "login", user_session_path %>
-                    </div>
+                    <li>
+                      <div class="glyphicon glyphicon-log-in sign_in">
+                        <%= link_to "login", user_session_path %>
+                      </div>
+                    </li>
                   </div>
-                </li>
-              </ul>
+                </ul>
+              </div>
             <% end %>
           </div>
         </nav>

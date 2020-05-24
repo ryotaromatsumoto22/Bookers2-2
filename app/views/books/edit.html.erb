@@ -17,24 +17,19 @@
 					<%= form_for(@book) do |f| %>
 						<div class="field row">
 							<label for="book_title">Title</label>
-							<div class="col-xs-12">
-								<%= f.text_field :title %>
-							</div>
+								<%= f.text_field :title, class:"col-xs-12" %>
 						</div>
 						<div class="field row">
 							<label for="book_opinion">Opinion</label>
-							<div class="col-xs-12">
-								<%= f.text_field :body %>
-							</div>
+								<%= f.text_field :body, class:"col-xs-12" %>
 						</div>
 						<div class="actions row">
-							<div class="btn btn-primary col-xs-12">
-								<%= f.submit "Update Book" %>
-							</div>
+							<%= f.submit "Update Book", class:"btn btn-primary col-xs-12" %>
+							<br>
 
-						<%= link_to "Show", book_path(@book.id) %>
-						|
-						<%= link_to "Back", books_path %>
+							<%= link_to "Show", book_path(@book.id) %>
+							|
+							<%= link_to "Back", books_path %>
 						</div>
 					<% end %>
 			</div>
