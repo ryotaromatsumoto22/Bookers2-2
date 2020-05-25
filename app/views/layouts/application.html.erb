@@ -21,30 +21,30 @@
               <ul class="nav navbar-nav navbar-right">
                 <div class="col-sm-2">
                   <li>
-                    <div class="glyphicon glyphicon-home home">
-                      <%= link_to "Home", user_path(current_user.id) %>
-                    </div>
+                    <%= link_to user_path(current_user.id) do %>
+                      <div class="glyphicon glyphicon-home home">Home</div>
+                      <% end %>
                   </li>
                 </div>
                 <div class="col-sm-2">
                   <li>
-                    <div class="glyphicon glyphicon-user users">
-                      <%= link_to "Users", users_path %>
-                    </div>
+                    <%= link_to users_path do %>
+                      <div class="glyphicon glyphicon-user users">Users</div>
+                    <% end %>
                   </li>
                 </div>
                 <div class="col-sm-2">
                   <li>
-                    <div class="glyphicon glyphicon-book books">
-                      <%= link_to "Books", books_path %>
-                    </div>
+                    <%= link_to books_path do %>
+                      <div class="glyphicon glyphicon-book books">Books</div>
+                     <% end %>
                   </li>
                 </div>
                 <div class="col-sm-2">
                   <li>
-                    <div class="glyphicon glyphicon-edit sign_up">
-                      <%= link_to "logout", destroy_user_session_path,　method: :delete %>
-                    </div>
+                    <%= link_to destroy_user_session_path,　method: :delete do %>
+                      <div class="glyphicon glyphicon-edit sign_up">logout</div>
+                    <% end %>
                   </li>
                 </div>
               </ul>
@@ -55,30 +55,30 @@
                 <ul class="nav navbar navbar-right">
                   <div class="col-sm-2">
                     <li>
-                      <div class="glyphicon glyphicon-home home">
-                        <%= link_to "Home", root_path %>
-                      </div>
+                      <%= link_to root_path do %>
+                        <div class="glyphicon glyphicon-home home">Home</div>
+                      <% end %>
                     </li>
                   </div>
                   <div class="col-sm-2">
                     <li>
-                      <div class="glyphicon glyphicon-link about">
-                        <%= link_to "About", about_path %>
-                      </div>
+                      <%= link_to about_path do %>
+                        <div class="glyphicon glyphicon-link about">About</div>
+                      <% end %>
                     </li>
                   </div>
                   <div class="col-sm-2">
                     <li>
-                      <div class="glyphicon glyphicon-edit sign_up">
-                        <%= link_to "sign up", new_user_registration_path %>
-                      </div>
+                      <%= link_to new_user_registration_path do %>
+                        <div class="glyphicon glyphicon-edit sign_up">signup</div>
+                      <% end %>
                     </li>
                   </div>
-                  <div class="col-sm-2">
+                  <div class="col-sm-4">
                     <li>
-                      <div class="glyphicon glyphicon-log-in sign_in">
-                        <%= link_to "login", user_session_path %>
-                      </div>
+                      <%= link_to user_session_path do %>
+                        <div class="glyphicon glyphicon-log-in sign_in"> login</div>
+                      <% end %>
                     </li>
                   </div>
                 </ul>

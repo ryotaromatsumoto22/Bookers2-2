@@ -30,12 +30,10 @@
 									<%= @book_d.body %>
 								</td>
 								<td>
-									<div class="btn-sm btn-success">
-										<%= link_to "Edit", edit_book_path(@book_d.id) %>
+									<%= link_to "Edit", edit_book_path(@book_d.id), class: "btn-sm btn-success" %>
 								</td>
 								<td>
-									<div class="btn-sm btn-danger">
-										<%= link_to "Destroy",book_path,method: :delete,"data-confirm" =>"本当に消しますか？" %>
+									<%= link_to "Destroy",book_path,method: :delete,"data-confirm" =>"本当に消しますか？", class: "btn-sm btn-danger" %>
 								</td>
 							</tr>
 						<% else %>
