@@ -5,7 +5,7 @@ class BooksController < ApplicationController
   def index
     @user = current_user || User.find_by(id:session[:user_id])
     @book = Book.new
-    @books = Book.all
+    @books = Book.page(params[:page]).reverse_order
   end
 
   def show
@@ -13,6 +13,7 @@ class BooksController < ApplicationController
     @book = Book.new
     @book_d = Book.find(params[:id])
     @books = Book.all
+    @post_comment = PostComment.new
   end
 
   def edit

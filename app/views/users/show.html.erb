@@ -35,6 +35,12 @@
 								<td>
 									<%= book.body %>
 								</td>
+								<td>
+									<%= book.favorites.count %> いいね
+								</td>
+								<td>
+									<%= book.post_comments.count %>件
+								</td>
 							</tr>
 						<% end %>
 					</tbody>
