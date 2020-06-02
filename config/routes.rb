@@ -19,12 +19,14 @@ Rails.application.routes.draw do
 
 
 
-  resources :books, only:[:index, :show, :edit, :update, :destroy, :create] do
-  	resources :post_comments, only:[:create, :destroy]
-    resource :favorites, only:[:create, :destroy]
+  resources :books, only: [:index, :show, :edit, :update, :destroy, :create] do
+  	resource :post_comments, only: [:create, :destroy]
+    resource :favorites, only: [:create, :destroy]
   end
 
   resources :users, only:[:show, :index, :edit, :update]
+
+  resources :relationships, only: [:create, :destroy]
 
 
   get 'home/about' => 'homes#about' , as: 'about'
