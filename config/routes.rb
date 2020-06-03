@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   get 'user/:id/followers' => 'relationships#followers', as: 'followers'
 
   get 'home/about' => 'homes#about' , as: 'about'
+  get '/search' => 'searchs#search' , as: 'search'
 
 
 
