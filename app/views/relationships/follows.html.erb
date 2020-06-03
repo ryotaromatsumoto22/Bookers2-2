@@ -21,9 +21,9 @@
             <td>
               <% unless user == current_user %>
                 <% if current_user.following?(user) %>
-                  <%= link_to 'フォローを外す', unfollow_path(user.id,redirect_id: 0), method: :POST %>
+                  <%= link_to 'フォローを外す', unfollow_path(user.id,redirect_id: 2), method: :POST %>
                 <% else %>
-                  <%= link_to 'フォローする', follow_path(user.id,redirect_id: 0), method: :POST %>
+                  <%= link_to 'フォローする', follow_path(user.id,redirect_id: 2), method: :POST %>
                   <% end %>
                 <% end %>
             </td>

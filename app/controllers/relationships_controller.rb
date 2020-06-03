@@ -27,6 +27,10 @@ end
         redirect_to user_path(user)
       when 1
         redirect_to users_path
+      when 2
+        redirect_to follows_path
+      when 3
+        redirect_to followers_path
       end
     end
   # def set_user
