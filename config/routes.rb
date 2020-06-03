@@ -26,8 +26,10 @@ Rails.application.routes.draw do
 
   resources :users, only:[:show, :index, :edit, :update]
 
-  resources :relationships, only: [:create, :destroy]
-
+  post 'follow/:id' => 'relationships#follow', as: 'follow' # フォローする
+  post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow' # フォロー外す
+  get 'user/:id/follows' => 'relationships#follows', as: 'follows'
+  get 'user/:id/followers' => 'relationships#followers', as: 'followers'
 
   get 'home/about' => 'homes#about' , as: 'about'
 

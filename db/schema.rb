@@ -10,14 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_02_042133) do
+ActiveRecord::Schema.define(version: 2020_06_03_022021) do
 
   create_table "books", force: :cascade do |t|
     t.text "title"
     t.text "body"
     t.integer "user_id"
-    t.string "user_name"
-    t.integer "user_profile_image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -27,6 +25,8 @@ ActiveRecord::Schema.define(version: 2020_06_02_042133) do
     t.integer "book_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_favorites_on_book_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "post_comments", force: :cascade do |t|
@@ -38,13 +38,10 @@ ActiveRecord::Schema.define(version: 2020_06_02_042133) do
   end
 
   create_table "relationships", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "follow_id"
+    t.integer "follower_id"
+    t.integer "followed_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["follow_id"], name: "index_relationships_on_follow_id"
-    t.index ["user_id", "follow_id"], name: "index_relationships_on_user_id_and_follow_id", unique: true
-    t.index ["user_id"], name: "index_relationships_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
