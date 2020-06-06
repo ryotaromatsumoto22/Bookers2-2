@@ -10,10 +10,10 @@ class BooksController < ApplicationController
 
   def show
     @user = current_user || User.find_by(id: session[:user_id])
-    @book = Book.new
-    @book_d = Book.find(params[:id])
+    @book = Book.find(params[:id])
     @books = Book.all
     @post_comment = PostComment.new
+    @post_comments = @book.post_comments
   end
 
   def edit
@@ -35,8 +35,8 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    book = Book.find(params[:id])
-    book.destroy
+    @book = Book.find(params[:id])
+    @book.destroy
     redirect_to books_path
   end
 

@@ -1,0 +1,44 @@
+<h2>User info</h2>
+<%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+<table class="table">
+	<tbody>
+		<tr></tr>
+		<tr>
+			<th>name</th>
+			<th><%= user.name %></th>
+		</tr>
+		<tr>
+			<th>introduction</th>
+			<th><%= user.introduction %></th>
+		</tr>
+		<tr>
+			<th>follows</th>
+			<th>
+				<%= link_to follows_path(user.id) do %>
+				<%= user.follower.count %>
+				<% end %>
+			</th>
+		</tr>
+		<tr>
+			<th>followers</th>
+			<th>
+				<%= link_to followers_path(user.id) do %>
+				<%= user.followed.count %>
+				<% end %>
+			</th>
+		</tr>
+	</tbody>
+</table>
+<div class="row">
+	<% if user == current_user %>
+		<%= link_to edit_user_path(user.id) do %>
+			<div class="btn btn-default col-xs-12 glyphicon glyphicon-wrench" ></div>
+		<% end %>
+	<% else %>
+		<% if current_user.following?(user) %>
+       		<%= link_to 'フォロー外す', unfollow_path(user.id,redirect_id: 0), method: :POST, class: 'btn btn-danger btn-block col-xs-12' %>
+    	<% else %>
+       		<%= link_to 'フォローする', follow_path(user.id,redirect_id: 0), method: :POST, class: 'btn btn-primary btn-block col-xs-12'%>
+    	<% end %>
+	<% end %>
+</div>

@@ -1,5 +1,4 @@
 
-
 <div class="body">
 	<div class="container">
 		<div class="flash">
@@ -7,85 +6,28 @@
 				<%= flash[:notice] %>
 			<% end %>
 		</div>
-			
+
 			<div class="row">
+				<div class="col-xs-3">
 
-			<%= render '/co', book: @book, user: @book_d.user %>
+					<%= render 'users/info', user: @user %>
 
+					<%= render 'form', book: Book.new %>
+
+				</div>
 
 			<div class="col-xs-9">
 				<h2>Book detail</h2>
-				<table class="table">
-					<tbody>
-						<tr>
-							<td>
-								<%= link_to user_path(@book_d.user.id) do %>
-									<%= attachment_image_tag @book_d.user, :profile_image, :fill, 70, 70, format: 'jpeg',fallback: "no_image.jpg" %>
-									<br><%= @book_d.user.name %>
-								<% end %>
-							</td>
-							<td>
-								<%= link_to @book_d.title, book_path(@book_d.id) %>
-							</td>
-							<td>
-								<%= @book_d.body %>
-							</td>
-							<%if @book_d.user == current_user %>
-								<td>
-									<%= link_to "Edit", edit_book_path(@book_d.id), class: "btn-sm btn-success" %>
-								</td>
-								<td>
-									<%= link_to "Destroy",book_path,method: :delete,"data-confirm" =>"本当に消しますか？", class: "btn-sm btn-danger" %>
-								</td>
-							<% end %>
-							<td>
-								<% if @book_d.favorited_by?(current_user) %>
-									<%= link_to book_favorites_path(@book_d, redirect_id: 1), method: :delete do %>
-										<i class="fa fa-heart" aria-hidden="true" style="color:red;"></i>
-											<%= @book_d.favorites.count %>
-									<% end %>
-								<% else %>
-									<%= link_to book_favorites_path(@book_d, redirect_id: 1), method: :post do %>
-										<i class="fa fa-heart-o" aria-hidden="true"></i>
-										<%= @book_d.favorites.count %>
-									<% end %>
-								<% end %>
-							</td>
-							<td>
-								コメント数：<%= @book_d.post_comments.count %>
-							</td>
+					<table class='table'>
+				 		<tr class="book_<%= @book.id %>">
+							<%= render 'detail', book: @book %>
 						</tr>
-					</tbody>
-				</table>
+					</table>
+					<ol class="show-tb comment_<%= @book.id %>">
+						<%= render 'comment', post_comments: @book.post_comments %>
+					</ol>
 
-				<ol class="show-tb">
-					<% @book_d.post_comments.each do |post_comment| %>
-	        			<li class="row comment">
-	          				<div class="comment-body bb">
-	           					<div class="comment-avatar">
-	               					<div class="avatar">
-	                   					<%= attachment_image_tag  post_comment.user, :profile_image, :fill, 40, 40, format:'jpeg' %>
-	               					</div>
-	       						</div>
-	                			<div class="comment-text">
-	           						<div class="comment-author clearfix">
-	                        			<a href="#" class="link-author"><%= post_comment.user.name %></a>
-	                        			<span class="comment-meta">
-	               							<span class="comment-date"><%= post_comment.created_at.strftime('%Y/%m/%d %H:%M') %></span>
-	                       				</span>
-	                    			</div>
-	               				<div class="comment-entry"><%= post_comment.comment %></div>
-							</div>
-	               			<% if post_comment.user == current_user %>
-	  							<div>
-	    							<%= link_to "削除", book_post_comments_path(post_comment.book, post_comment), method: :delete, class: "btn btn-danger pull-right" %>
-	  							</div>
-							<% end %>
-	           			 </div>
-	       			</li>
-				<% end %>
-				</ol>
-				<%= form_for [@book_d, @post_comment] do |f| %>
+				<%= form_with model:[@book, @post_comment], data: {remote: true} do |f| %>
     				<div class="row">
         				<div class="col-sm-6">
             				<%= f.text_area :comment, rows:'2', class: "form-control",placeholder: "コメントをここに" %>
