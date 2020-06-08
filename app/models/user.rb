@@ -23,6 +23,7 @@ class User < ApplicationRecord
   validates :prefecture_code, presence: true
   validates :city, presence: true
   validates :street, presence: true
+  
   # ユーザーをフォローする
   def follow(user_id)
     follower.create(followed_id: user_id)

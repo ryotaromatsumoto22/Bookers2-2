@@ -74,8 +74,11 @@ gem 'kaminari','~> 1.2.1'
 
 
 gem 'jp_prefecture'
-gem 'jquery-rails' 
+gem 'jquery-rails'
 gem 'dotenv-rails'
 
 gem 'geocoder'
 gem 'dotenv-rails'
+
+
+
